@@ -65,4 +65,51 @@ POST data entered into the write-data page
 Create a table from a GET on the view-data page
 Update the hyperlinks to use the server router
 
+/// ASSIGNMENT 4.2
+
+In lab 5.2, we created the ability to POST new data and retrieve that data for viewing in a table.
+
+Now you will add the ability to DELETE data.  To do this you will:
+
+Add a DELETE service in your services.js
+Name the service "/delete-record".
+Get the id sent in the request body JSON.
+Read the database file we created in class. (Don't forget to parse the JSON.
+Lop through the JSON array until you find the record with the matching id.
+Splice that record from the array.
+Save the JSON back to the database file.
+Update the view-data.html and view-data.js files:
+Add a column to the table header definition in the html file (it can be blank, it just needs to be there)
+Add a button to the html string you created in your create table method (in view-data.js):
+Give the button object the class: delete-button
+Give the button a data-id attribute.  Set that equal to the value of the id field in your data array.
+After creating adding the html with the innerHTML command, call the activateDelete() function.
+Here is a file with the activateDelete function code for you to use: activateDelete.txtDownload activateDelete.txtOpen this document with ReadSpeaker docReader
+Create the handleDelete function: 
+It receives the deleteID variable from the listener created in activateDelete.
+Create a DELETE fetch and send the deleteID to /delete-record on the server.
+Test for SUCCESS: 
+If successful, call retrieveData.
+If unsuccessful, open an alert and display the error.
+Note: DOM items created in JavaScript don't "exist" when the page is loaded.  Therefore, we call ativateDelete after the buttons are created.
+
+
+ ------ ANNOUNCEMENT
+This week we finished up lab 5.2, where we:
+
+Completed the code on the client side (fetch) which enabled our website clients to be able to send data to the write-record service on our server.
+Created the read-records service which reads our data file and sends back all the information to the client.
+Created the fetch on the client side to call to the read-records service to get the data so it could be displayed.
+This week you will be adding a new service (DELETE) to the services.js and then enabling the client to use that service.  Keep in mind that these are 2 separate steps. Focus on the DELETE service, then focus on what the client need to do.
+
+Here are the steps for the DELETE service:
+
+Accepts a delete id in the body (sent from the client).
+Reads the data in from the data.txt file.
+Parses that data into a JSON object.
+Loops through the data array to find the array index which contains the delete id.
+Removes that index from the array (research the splice() function).
+Writes the altered array to the file (be sure to stringify).
+On the client side you just need to identify the id for the record that is to be deleted.  I provided a function that will get the id for you.  Be sure to follow the requirement steps carefully.  Once you have the id, call the delete service and send the id in a JSON object.
+
 
