@@ -1,3 +1,6 @@
+//To reinstall Node-Modules
+in console log: npm install
+
 ///ASSIGNMENT 2.2///
 
 You are going to add 2 new pages to your project:
@@ -63,4 +66,3 @@ Create a table from a GET on the view-data page
 Update the hyperlinks to use the server router
 
 
-////
