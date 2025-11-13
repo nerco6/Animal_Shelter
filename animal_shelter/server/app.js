@@ -1,3 +1,5 @@
+// STEP 1 - CREATE THE SERVER
+
 //brings over from node modules and set as variables
 const express = require('express');
 const cors = require('cors');
@@ -25,9 +27,17 @@ app.use("/client", express.static(path.resolve(__dirname + "/../client/"))); //f
 //define a port 
 const port = 5000;
 
-///////////Page listeners (our router)
 
-///////////Service listeners (our data processes
+///////////Page listeners (our router)
+var router = require('./router.js'); //'./' means current folder
+//send it
+router(app);
+
+///////////Service listeners (our data processes)
+var services = require('./services.js');
+//bring it into app
+services(app);
+
 
 //Listen - start server
 var server = app.listen(port, function(err) {
@@ -35,3 +45,6 @@ var server = app.listen(port, function(err) {
 
     console.log("Listening on port: " + port);
 });
+
+
+///// in Cmd Prompt terminal, cd to animal_shelter folder and then type in node server/app.js and then Enter to run
