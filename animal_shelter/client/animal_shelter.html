@@ -2,8 +2,8 @@
 <html>
     <head>
         <title>Nina's Animal Shelter</title>
-        <link rel="stylesheet" href="css/animal_shelter.css">
-        <link rel="stylesheet" href="css/landingpage.css">
+        <link rel="stylesheet" href="/client/css/animal_shelter.css"> <!-- changed from css/animal_shelter.css to /client/css/animal_shelter.css which redirects how to locate it from the beginning of the path (/client)-->
+        <link rel="stylesheet" href="/client/css/landingpage.css">
     </head>
     <body>
         <main>
@@ -12,10 +12,11 @@
                     <div id="site_name">Nina's Animal Shelter</div>
                 </div>
                 <div class="nav-bar">
-                    <a class="link" href="animal_shelter.html">Home</a>
-                    <a class="link" href="write-data.html">Enter Data</a>
-                    <a class="link" href="view-data.html">View Data</a>
-                    <a class="link" href="">Browse Data</a>
+       
+                    <a class="link" href="/">Home</a> <!-- change from "animal_shelter.html to "/" to get from server"-->
+                    <a class="link" href="/write-data">Enter Data</a> <!-- change from "write-data.html to "/write-data" "-->
+                    <a class="link" href="/view-data">View Data</a>
+                    <a class="link" href="/browse-data">Browse Data</a>
                 </div>
                 <div class="separator"></div>
             </section>

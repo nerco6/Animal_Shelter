@@ -60,21 +60,49 @@ function main() {
     console.log(jsonObject);
     console.log(jsonObject.length);
     console.log(JSON.stringify(jsonObject)); 
-    showTable();
+    retrieveData();
+    //showTable();
 }
 
-function showTable(){ //show table
+function retrieveData(){
+    //create FETCH statement - get data from the database
+    fetch(shelterURL + "/get-records", { //get-records is in services
+        method: "GET"
+    }) 
+
+    .then(response => {
+        if(!response.ok){
+            throw new Error("Network Error: " + response.statusText); 
+        }
+        return response.json();
+    })
+
+    .then(data => {
+        if(data.msg === "SUCCESS"){
+            showTable(data.shelterData);
+            //showTable(jsonObject); test with hardcoded data 'jsonObject'
+        }
+    })
+
+    .catch(error => {
+        alert("Error: " + error);
+    })
+}
+
+function showTable(shelterData){ //show table
     var htmlString = "";
 
-    for (var i = 0; i < jsonObject.length; i++){
+    for (var i = 0; i < shelterData.length; i++){
         htmlString += "<tr>";
-            htmlString += "<td>" + jsonObject[i].name + "</td>";
-            htmlString += "<td>" + jsonObject[i].species + "</td>";
-            htmlString += "<td>" + jsonObject[i].breed + "</td>";
-            htmlString += "<td>" + jsonObject[i].age + "</td>";
-            htmlString += "<td>" + jsonObject[i].color + "</td>";
-            htmlString += "<td>" + jsonObject[i].temperament + "</td>";
-            htmlString += "<td>" + jsonObject[i].entryType + "</td>";
+            htmlString += "<td>" + shelterData[i].name + "</td>";
+            htmlString += "<td>" + shelterData[i].species + "</td>";
+            htmlString += "<td>" + shelterData[i].breed + "</td>";
+            htmlString += "<td>" + shelterData[i].age + "</td>";
+            htmlString += "<td>" + shelterData[i].color + "</td>";
+            htmlString += "<td>" + shelterData[i].temperament + "</td>";
+            htmlString += "<td>" + shelterData[i].entryType + "</td>";
+            htmlString += "<td>" + <button class="delete-button"></button> + "</td>";  //////////////////////////////HOMEWORK ADD DELETE BUTTON
+            
         htmlString += "</tr>";
     }
 

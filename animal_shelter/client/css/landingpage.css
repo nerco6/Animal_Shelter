@@ -2,7 +2,7 @@
     display: flexbox;
     background-image: url(../images/dogbg.png);
     background-size:cover;
-    height:550px;
+    height:730px; /* 550 on laptop */
     width: auto;
     opacity: 50%;
     border: 3px solid rgb(100, 100, 183);

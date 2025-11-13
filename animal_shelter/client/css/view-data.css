@@ -2,7 +2,7 @@
     display: flexbox;
     background-image: url(../images/group.png);
     background-size:cover;
-    height:550px;
+    height:730px;
     width: auto;
     opacity: 50%;
     border: 3px solid rgb(100, 100, 183);
@@ -13,7 +13,7 @@
 }
 
 #tablebox {
-    display: flexbox;
+    display:flexbox;
     background-color: white;
     border: 3px solid rgb(100, 100, 183);
     height:auto;
@@ -35,7 +35,8 @@
     .table thead tr th {
         padding-top: 5px;
         padding-bottom: 5px;
-        padding-right: 52px;
+        padding-right: 61px;
+        padding-left: 61px;
         font-size: 20px;
         color: darkslategray;
         text-align:center;

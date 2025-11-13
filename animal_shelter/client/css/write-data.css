@@ -2,7 +2,7 @@
     display: flexbox;
     background-image: url(../images/kittenbg.png);
     background-size:cover;
-    height:550px;
+    height:730px;
     width: auto;
     opacity: 50%;
     border: 3px solid rgb(100, 100, 183);
@@ -31,7 +31,7 @@
 
 .form-group {
     padding-top: 10px;
-    padding-left: 10;
+    padding-left: 15%;
     padding-bottom: 15px;
     background-color: white;
     
@@ -47,8 +47,8 @@
 }
 
 .form-control {
-    float: auto;
-    clear: right;
+    float: none;
+    clear: both;
     font-size: 20px;
     display: block;
     margin-bottom: 10px;
@@ -70,6 +70,7 @@
 
 .writebtns{
     text-align: center;
+    padding-right: 15%;
 }
 
 button {
