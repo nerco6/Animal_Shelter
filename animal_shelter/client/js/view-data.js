@@ -57,12 +57,9 @@ jsonObject.push(dataset5);
 main();
 
 function main() { 
-    //console.log(jsonObject);
-    //console.log(jsonObject.length);
-    //console.log(JSON.stringify(jsonObject)); 
     retrieveData();
-    //showTable();
 }
+
 
 function retrieveData(){
     //create FETCH statement - get data from the database
