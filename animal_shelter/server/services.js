@@ -84,9 +84,10 @@ var services = function(app){
     });
 
 //DELETE
-    app.delete('/delete-record', function(req, res){ //DELETE function
+    app.delete("/delete-record", function(req, res){ //DELETE function
         //need to get id from request body JSON
         var id = req.body.id;
+        console.log("into app.delete");
         //SEE IF FILE EXISTS
        
         if(fs.existsSync(database_file)) { // if this statement is true, the file exists and we can update it
@@ -98,9 +99,9 @@ var services = function(app){
                     shelterData = JSON.parse(data); //parse the received data
                     
                     //Loops through the data array to find the array index which contains the delete id.
-                    for (var index = 0; index < shelterData.length; i++){
-                        if (shelterData[index].id === id){
-                            //remove record
+                    for (var index = 0; index < shelterData.length; index++){
+                        if (shelterData[index].id == id){
+                            //remove record from array
                             shelterData.splice(index,1);
                         }
                     }
@@ -115,7 +116,7 @@ var services = function(app){
                 }
             });
         }else{ //Means no file exists yet
-            shelterData.push(animalData);
+            res.send(JSON.stringify({msg: "No Existing Database"}));
 
             //since no file exists already, there is nothing to read, 
 
@@ -129,7 +130,6 @@ var services = function(app){
             });
         }
     });
-    
 
 }
 

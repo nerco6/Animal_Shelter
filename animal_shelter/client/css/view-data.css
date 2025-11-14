@@ -18,7 +18,7 @@
     border: 3px solid rgb(100, 100, 183);
     height:auto;
     width: 80%;
-    min-width: 900px;
+    max-width: 1200px;
     position: absolute;
     top:42%;
     left: 10%; 
@@ -26,7 +26,7 @@
 
     .table > thead > tr > th,
     .table > tbody > tr > td {
-        padding: 10px 25px;
+        padding: 10px 10px;
         line-height: 1;
         border: none;
         vertical-align: middle;
@@ -35,8 +35,8 @@
     .table thead tr th {
         padding-top: 5px;
         padding-bottom: 5px;
-        padding-right: 61px;
-        padding-left: 61px;
+        padding-right: 10px;
+        padding-left: 10px;
         font-size: 20px;
         color: darkslategray;
         text-align:center;
@@ -55,8 +55,16 @@
         color:white;
     }
 
-    tr:nth-child(even) {
+    .table {
+        width: 100%;         
+        border-collapse: collapse;
+    }
+
+    tr {
         background-color: whitesmoke;
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid rgb(107, 107, 107);
     }
  
+    .delete-button {
+        color:blueviolet;
+    }

@@ -110,6 +110,10 @@ Parses that data into a JSON object.
 Loops through the data array to find the array index which contains the delete id.
 Removes that index from the array (research the splice() function).
 Writes the altered array to the file (be sure to stringify).
-On the client side you just need to identify the id for the record that is to be deleted.  I provided a function that will get the id for you.  Be sure to follow the requirement steps carefully.  Once you have the id, call the delete service and send the id in a JSON object.
+
+On the client side you just need to identify the id for the record that is to be deleted.  
+I provided a function that will get the id for you.  
+Be sure to follow the requirement steps carefully.  
+Once you have the id, call the delete service and send the id in a JSON object.
 
 

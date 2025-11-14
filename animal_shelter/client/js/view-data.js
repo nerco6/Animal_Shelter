@@ -57,9 +57,9 @@ jsonObject.push(dataset5);
 main();
 
 function main() { 
-    console.log(jsonObject);
-    console.log(jsonObject.length);
-    console.log(JSON.stringify(jsonObject)); 
+    //console.log(jsonObject);
+    //console.log(jsonObject.length);
+    //console.log(JSON.stringify(jsonObject)); 
     retrieveData();
     //showTable();
 }
@@ -101,12 +101,61 @@ function showTable(shelterData){ //show table
             htmlString += "<td>" + shelterData[i].color + "</td>";
             htmlString += "<td>" + shelterData[i].temperament + "</td>";
             htmlString += "<td>" + shelterData[i].entryType + "</td>";
-            htmlString += "<td>" + <button class="delete-button"></button> + "</td>";  //////////////////////////////HOMEWORK ADD DELETE BUTTON
+            //add inner delete button
+            htmlString += "<td><button class='delete-button' data-id='" + shelterData[i].id + "'>Adopted! (Delete)</button></td>"
             
         htmlString += "</tr>";
     }
 
     var tableBodyObj = document.getElementById("animalTable");
+    
 
     tableBodyObj.innerHTML = htmlString;
+    activateDelete();
+}
+///////////////////////////////// PROFESSOR'S CODE - NO EDITS//////////////////////////////////////////////////////
+function activateDelete() { 
+    // Capture all html items tagged with the delete-button class
+    const deleteButtons = document.querySelectorAll('.delete-button');
+
+    //Loop through all the deleteButtons and create a listener for each one
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const deleteID = this.getAttribute("data-id");  // <-- from the html button object
+            //console.log(deleteID);
+            handleDelete(deleteID);  //You will write this function.
+        });
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function handleDelete(deleteID){
+    //console.log("handleDelete started");
+    fetch(shelterURL + "/delete-record", { // /delete-record is in services.js
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify({id: deleteID}),
+        
+    })
+    .then(response => {
+        if(!response.ok){
+            throw new Error("Network Error: " + response.statusText); 
+        }
+        return response.json();
+        
+    })
+    .then(data => {
+        alert("Result:" + data.msg);
+        if(data.msg === "SUCCESS"){
+            retrieveData();
+        }
+    })
+
+    .catch(error => {
+        console.log("error");
+        alert("Error: " + error);
+    })
+    //event.preventDefault();
 }
