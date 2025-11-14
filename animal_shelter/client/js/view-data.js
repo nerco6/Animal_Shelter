@@ -102,7 +102,7 @@ function showTable(shelterData){ //show table
             htmlString += "<td>" + shelterData[i].temperament + "</td>";
             htmlString += "<td>" + shelterData[i].entryType + "</td>";
             //add inner delete button
-            htmlString += "<td><button class='delete-button' data-id='" + shelterData[i].id + "'>Adopted! (Delete)</button></td>"
+            htmlString += "<td><button class='delete-button' data-id='" + shelterData[i].id + "'>Remove</button></td>"
             
         htmlString += "</tr>";
     }
