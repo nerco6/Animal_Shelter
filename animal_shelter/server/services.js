@@ -83,6 +83,54 @@ var services = function(app){
         }
     });
 
+//DELETE
+    app.delete('/delete-record', function(req, res){ //DELETE function
+        //need to get id from request body JSON
+        var id = req.body.id;
+        //SEE IF FILE EXISTS
+       
+        if(fs.existsSync(database_file)) { // if this statement is true, the file exists and we can update it
+            //READ current data
+            fs.readFile(database_file, "utf8", function(err, data){
+                if(err){ //if an error, send back a message to the client
+                    res.send(JSON.stringify({msg: err})); //whatever error comes back, the error gets sent as a message to the client
+                }else{
+                    shelterData = JSON.parse(data); //parse the received data
+                    
+                    //Loops through the data array to find the array index which contains the delete id.
+                    for (var index = 0; index < shelterData.length; i++){
+                        if (shelterData[index].id === id){
+                            //remove record
+                            shelterData.splice(index,1);
+                        }
+                    }
+                    //WRITE the updated data to the file
+                    fs.writeFile(database_file, JSON.stringify(shelterData), function(err){ //stringify the data and send it to the file
+                        if(err){
+                            res.send(JSON.stringify({msg: err}));
+                        }else{
+                            res.send(JSON.stringify({msg:"SUCCESS"}));
+                        }
+                    });
+                }
+            });
+        }else{ //Means no file exists yet
+            shelterData.push(animalData);
+
+            //since no file exists already, there is nothing to read, 
+
+            //WRITE file
+            fs.writeFile(database_file, JSON.stringify(shelterData), function(err){ //stringify the data and send it to the file
+                if(err){
+                    res.send(JSON.stringify({msg: "Error: " + err}));
+                }else{
+                    res.send(JSON.stringify({msg: "SUCCESS"}));
+                }
+            });
+        }
+    });
+    
+
 }
 
 module.exports = services;

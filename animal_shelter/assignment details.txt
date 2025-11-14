@@ -76,7 +76,7 @@ Name the service "/delete-record".
 Get the id sent in the request body JSON.
 Read the database file we created in class. (Don't forget to parse the JSON.
 Lop through the JSON array until you find the record with the matching id.
-Splice that record from the array.
+Splice that record from the array).
 Save the JSON back to the database file.
 Update the view-data.html and view-data.js files:
 Add a column to the table header definition in the html file (it can be blank, it just needs to be there)
