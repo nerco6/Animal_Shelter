@@ -117,3 +117,21 @@ Be sure to follow the requirement steps carefully.
 Once you have the id, call the delete service and send the id in a JSON object.
 
 
+//ASSIGNMENT 5.2
+
+Add a new web page to your server application:
+
+Name the page browse-data.html
+Use AngularJS to to make the request of all the data from the database
+Use <div> elements (or other elements if you prefer) to display the data from one record in a nice format
+Add two buttons:
+"Next Record"
+"Previous Record
+Use AngularJS on a button click to change the record displayed
+Remember to use CSS (browse-data.css) to keep it pretty.
+Update the project in your GitHub repository. Input your GitHub URL when complete.
+Hint: remember that the data is returned in an array of objects.
+
+Extra Credit (10 points): Change your add record page from an HTML/JavaScript(/jQuery, if applicable) page to an AngularJS page.
+
+ 
