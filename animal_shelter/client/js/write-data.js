@@ -1,3 +1,5 @@
+/*
+
 //Submit Button
 
 const submitButton = document.getElementById("submit");
@@ -74,4 +76,70 @@ $('#clear').click(function() {
     $('#entryType').val("");
 
     return false;
+});
+
+*/
+
+///////ANGULAR.JS --- ASSIGNMENT 5.2
+
+//1.  Define angular app
+var app = angular.module("addRecordsApp", []);
+
+//2.  Create the controller and populate with the functions needed
+app.controller('addRecordsCtrl', function ($scope, $http) {
+    $scope.addResults = "";
+
+    $scope.addRecord = function() {
+        if($scope.name === "" || $scope.species === "" || $scope.color === "") {
+            $scope.addResults = "Name, Species, and Color required";
+            return;
+        }
+
+        console.log($scope.name);
+        $http({
+            method : "post",
+            url : shelterURL + "/write-record",
+            data: {
+                "name": $scope.name,
+                "species": $scope.species,
+                "breed": $scope.breed,
+                "age": $scope.age,
+                "color": $scope.color,
+                "temperament": $scope.temperament,
+                "entryType": $scope.entryType,
+            }
+        }).then(function(response) {
+            if(response.data.msg === "SUCCESS") {
+                $scope.addResults = "New resident is added!";
+                $scope.name = "";
+                $scope.species = "";
+                $scope.breed = "";
+                $scope.age = "";
+                $scope.color = "";
+                $scope.temperament = "";
+                $scope.entryType = "";
+            } else {
+                $scope.addResults = response.data.msg;
+            }
+        }, function(response) {
+            alert(response);
+            console.log("I failed");
+        });
+    };
+
+    $scope.clearFields = function(){
+        $scope.name = "";
+        $scope.species = "";
+        $scope.breed = "";
+        $scope.age = "";
+        $scope.color = "";
+        $scope.temperament = "";
+        $scope.entryType = "";
+    }
+
+    $scope.startNew = function() {
+        $scope.addResults = "";
+    };
+
+    $scope.addResults = "";
 });

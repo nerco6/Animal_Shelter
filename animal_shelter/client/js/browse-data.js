@@ -11,7 +11,7 @@ app.controller('browseRecordsCtrl', function($scope, $http){
     $scope.get_records = function() {
         $http({
             method: "GET",
-            url: shelterURL + "/browse-records"
+            url: shelterURL + "/get-records"
         }).then(function(response) {
             //this is where we go if we connect
             if(response.data.msg === "SUCCESS") {

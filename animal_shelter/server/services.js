@@ -83,23 +83,6 @@ var services = function(app){
         }
     });
 
-//GET BROWSE 
-    app.get("/browse-records", function(req, res){ //GET function
-        if(fs.existsSync(database_file)){// if it exists
-            fs.readFile(database_file, "utf8", function(err, data){
-                if(err){ //test for error
-                    res.json({msg: err});
-                }else{
-                    shelterData = JSON.parse(data); //get data from txt file (json string) and turning it into a JSON object
-
-                    res.json({msg: "SUCCESS", shelterData: shelterData}); //LEFT IS JSON OBJECT NAME REFERENCED ON CLIENT SIDE : RIGHT SIDE IS VALUES (WHAT WAS JUST PARSED IN THE LINE ABOVE)
-                }
-            })
-        }else{ // if it doesn't exist
-            shelterData = [];
-            res.json({msg: "SUCCESS", shelterData: shelterData}); //will send back an empty array - prevents us from opening a file that does not exist
-        }
-    });
 
 //DELETE
     app.delete("/delete-record", function(req, res){ //DELETE function

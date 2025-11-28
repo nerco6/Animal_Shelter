@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/client/css/browse-data.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="/client/js/config.js"></script> 
     <script src="/client/js/browse-data.js" async></script>
 </head>
@@ -25,42 +26,46 @@
                 <a class="link" href="/browse-data">Browse Data</a>
             </div>
             <div class="separator"></div>
-        </section>
-        <section class="browse">
-            <div id="bgimg"></div>
-            <div id="browseInfo" style="font-size: 30px">
+        </section><div id="bgimg"></div>
+        <section class="browseBox">
+            
+            <div id="browseInfo" >
                 <div>
-                    <label for="name">Name: </label>
-                    <label style="margin-left: 30px; color: blue;" id="name">{{obj.name}}</label>
+                    <label class="labelField"for="name">Name: </label>
+                    <label class="valueField" id="name">{{obj.name}}</label>
                 </div>
                 <div>
-                    <label for="name">Species: </label>
-                    <label style="margin-left: 30px; color: blue;" id="name">{{obj.species}}</label>
+                    <label class="labelField"for="species">Species: </label>
+                    <label class="valueField" id="species">{{obj.species}}</label>
                 </div>
                 <div>
-                    <label for="name">Breed: </label>
-                    <label style="margin-left: 30px; color: blue;" id="name">{{obj.breed}}</label>
+                    <label class="labelField" for="breed">Breed: </label>
+                    <label class="valueField" id="breed">{{obj.breed}}</label>
                 </div>
                 <div>
-                    <label for="name">Color: </label>
-                    <label style="margin-left: 30px; color: blue;" id="name">{{obj.color}}</label>
+                    <label class="labelField" for="age">Age: </label>
+                    <label class="valueField" id="age">{{obj.age}}</label>
                 </div>
                 <div>
-                    <label for="name">Termperament: </label>
-                    <label style="margin-left: 30px; color: blue;" id="name">{{obj.temperament}}</label>
+                    <label class="labelField"for="color">Color: </label>
+                    <label class="valueField" id="color">{{obj.color}}</label>
                 </div>
                 <div>
-                    <label for="name">Entry Type: </label>
-                    <label style="margin-left: 30px; color: blue;" id="name">{{obj.entryType}}</label>
+                    <label class="labelField"for="temperament">Termperament: </label>
+                    <label class="valueField" id="temperament">{{obj.temperament}}</label>
+                </div>
+                <div>
+                    <label class="labelField"for="entry type">Entry Type: </label>
+                    <label class="valueField" id="entryType">{{obj.entryType}}</label>
                 </div>
             
 
-                <div style="float: left; margin-top: 30px">
-                    <div style="float: left;">
+                <div class="btnContainer" >
+                    <div class="btnStyle">
                         <button id="previous" ng-click="changeRecord(-1)" ng-hide="hidePrev">&lt&lt&lt Previous</button>
                     </div>
 
-                    <div style="float: left;">
+                    <div class="btnStyle" >
                         <button id="next" ng-click="changeRecord(1)" ng-hide="hideNext">Next &gt&gt&gt</button>
                     </div>
                 </div>

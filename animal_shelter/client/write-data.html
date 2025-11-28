@@ -9,10 +9,11 @@
         <link rel="stylesheet" href="/client/css/write-data.css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="/client/js/config.js"></script> <!-- added to include shelterURL variable-->
         <script src="/client/js/write-data.js" async></script>
     </head>
-    <body>
+    <body ng-app="addRecordsApp" ng-controller="addRecordsCtrl">
         <main>
             <section>
                 <div class="header" >
@@ -34,35 +35,35 @@
                         <form>
                             <div >
                                 <label class="form-label" for="name">Name</label>
-                                <input class="form-control" name="name" id="name">
+                                <input class="form-control" name="name" id="name" data-ng-model="name" data-ng-change=startNew()>
                             </div>
                             <div>
                                 <label class="form-label" for="species">Species</label>
-                                <input class="form-control" name="species" id="species">
+                                <input class="form-control" name="species" id="species" data-ng-model="species" data-ng-change=startNew()>
                             </div>
                             <div>
                                 <label class="form-label" for="breed">Breed</label>
-                                <input class="form-control" name="breed" id="breed">
+                                <input class="form-control" name="breed" id="breed" data-ng-model="breed" data-ng-change=startNew()>
                             </div>
                             <div>
                                 <label  class="form-label"for="age">Age</label>
-                                <input class="form-control" name="age" id="age">
+                                <input class="form-control" name="age" id="age" data-ng-model="age" data-ng-change=startNew()>
                             </div>
                             <div>
                                 <label  class="form-label"for="color">Color</label>
-                                <input class="form-control" name="color" id="color">
+                                <input class="form-control" name="color" id="color" data-ng-model="color" data-ng-change=startNew()>
                             </div>
                             <div>
                                 <label  class="form-label"for="temperament">Temperament</label>
-                                <input class="form-control" name="temperament" id="temperament">
+                                <input class="form-control" name="temperament" id="temperament" data-ng-model="temperament" data-ng-change=startNew()>
                             </div>
                             <div>
                                 <label  class="form-label"for="entryType">Entry Type</label> 
-                                <input class="form-control" name="entryType" id="entryType">
+                                <input class="form-control" name="entryType" id="entryType" data-ng-model="entryType" data-ng-change=startNew()>
                             </div>
                             <div class="writebtns">
-                                <button id="submit">Submit</button>
-                                <button id="clear">Clear</button>
+                                <button id="submit" data-ng-click="addRecord()">Submit</button>
+                                <button id="clear" ng-click="clearFields()">Clear</button>
                             </div>
                         </form>
                     </div> 

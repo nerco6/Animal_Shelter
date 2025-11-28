@@ -1,0 +1,64 @@
+#bgimg {
+    display: flexbox;
+    background-image: url(../images/dogwalking.png);
+    background-size:cover;
+    height:730px;
+    width: auto;
+    opacity: 50%;
+    border: 3px solid rgb(100, 100, 183);
+    border-radius: 5px;
+}
+
+.browseBox{
+    display: flexbox;
+    background-color: white;
+    border: 3px solid rgb(100, 100, 183);
+    border-radius: 3%;
+    height:auto;
+    width: 60%;
+    min-width: 300px;
+    position: absolute;
+    top:28%;
+    left: 20%; 
+
+}
+
+#browseInfo{
+    margin-left: 30%;
+    font-size: 30px;
+}
+
+.labelField{
+    color: darkslategray;
+}
+.valueField {
+    margin-left: 30px; 
+    color: rgb(100, 100, 183);
+}
+
+.btnContainer{
+    float: left; 
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+}
+
+.btnStyle{
+    float: left;
+    padding-right: 80px;
+}
+
+#previous{
+    position:absolute;
+    left:35%;
+}
+
+#next{
+   position: absolute;
+   right: 40%;
+}
+
+button{
+    color: whitesmoke;
+    background-color: rgb(100, 100, 183);
+}

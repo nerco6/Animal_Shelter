@@ -19,6 +19,10 @@ var router = function(app) { //app does not have anything to do with app.js. dif
         //sending back landing page
         res.sendFile(path.join(__dirname + "/../client/write-data.html")); 
     });
+    app.get('/browse-data', function(req, res){ /// '/' directs to the write-data page.
+        //sending back landing page
+        res.sendFile(path.join(__dirname + "/../client/browse-data.html")); 
+    });
 }
 
 //Export from here and Import into our app.js = imported via app.js file under Page Listeners
