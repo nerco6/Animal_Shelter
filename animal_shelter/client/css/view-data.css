@@ -12,6 +12,12 @@
 
 }
 
+#findByType > label {
+    margin-left: 40px;
+    font-size: 20px;
+    padding: 10,10;
+}
+
 #tablebox {
     display:flexbox;
     background-color: white;
@@ -24,47 +30,108 @@
     left: 10%; 
 }
 
-    .table > thead > tr > th,
-    .table > tbody > tr > td {
-        padding: 10px 10px;
-        line-height: 1;
-        border: none;
-        vertical-align: middle;
-    }
+.table > thead > tr > th,
+.table > tbody > tr > td {
+    padding: 10px 10px;
+    line-height: 1;
+    border: none;
+    vertical-align: middle;
+}
 
-    .table thead tr th {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-right: 10px;
-        padding-left: 10px;
-        font-size: 20px;
-        color: darkslategray;
-        text-align:center;
-    }
+.table thead tr th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 20px;
+    color: darkslategray;
+    text-align:center;
+}
 
-    td {
-        color: black;
-        font-size: 16px;
-        text-align:center;
-        margin: auto;
-    }
+td {
+    color: black;
+    font-size: 16px;
+    text-align:center;
+    margin: auto;
+}
 
-    .table > thead > tr > th {
-        background-color: 
-        rgb(100, 100, 183);
-        color:white;
-    }
+.table > thead > tr > th {
+    background-color: 
+    rgb(100, 100, 183);
+    color:white;
+}
 
-    .table {
-        width: 100%;         
-        border-collapse: collapse;
-    }
+.table {
+    width: 100%;         
+    border-collapse: collapse;
+}
 
-    tr {
-        background-color: whitesmoke;
-        border-bottom: 2px solid rgb(107, 107, 107);
-    }
- 
-    .delete-button {
-        color:blueviolet;
-    }
+tr {
+    background-color: whitesmoke;
+    border-bottom: 2px solid rgb(107, 107, 107);
+}
+
+.delete-button {
+    color:blueviolet;
+}
+
+#updateForm {
+display:flexbox;
+background-color: whitesmoke;
+border: 3px solid rgb(100, 100, 183);
+height:auto;
+width: 35%;
+max-width: 1200px;
+position: absolute;
+top:30%;
+left: 32%; 
+}
+
+#updateForm > div > input,label {
+    font-size: 20px;
+    margin-left: 20%;
+}
+
+#updateForm > div > label{
+    font-size: 25px;
+    color:darkslategray;
+}
+
+#updateForm > div {
+    margin-top: 10px;
+    color: white;
+}
+
+#updateFormBtn {
+    margin-left: 27%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+#updateFormBtn > div {
+    float: left; 
+    clear: right; 
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+#updateFormBtn > button {
+    background-color: rgb(71, 131, 204);
+    color:aliceblue;
+    width: 100px;
+
+}
+
+:hover#submit, :hover#cancelButton{
+    background-color: rgb(100, 100, 183)
+}
+
+:active#submit, :active#cancelButton{
+    background-color: rgb(182, 182, 233)
+}
+
+#updateForm > #updateHeader {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    background-color: rgb(100, 100, 183);
+}

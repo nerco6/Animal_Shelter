@@ -11,7 +11,7 @@ const client = new MongoClient(dbURL);
 //create function where database listeners will be executed 
 var services = function(app){
 
-//POST
+//POST - GOOD
     app.post('/write-record', async function(req, res){ //POST function
         //id removed - should now use MongoDB id
         var animalData = { //Creates a JSON string
@@ -41,8 +41,11 @@ var services = function(app){
     });
 
 
-//GET 
+//GET - GOOD
     app.get("/get-records", async function(req, res){ //GET function
+       //order alphabetically by name
+        //var orderBy = {name: 1};
+
         try{
             const conn = await client.connect();
             const db = conn.db("animalshelter");
@@ -52,7 +55,7 @@ var services = function(app){
 
 
             await conn.close();
-            return res.json({msg: "SUCCESS", shelterData: animals}); //sends spells array to client to populate to table
+            return res.json({msg: "SUCCESS", shelterData: animals}); //sends animals array to client to populate to table
 
         }catch(err){
             return res.json({msg: "Error: " + err});
@@ -60,17 +63,17 @@ var services = function(app){
     });
 
 
-//DELETE
+//DELETE - GOOD
     app.delete("/delete-record", async function(req, res){ //DELETE function
         //need to get id from request body JSON
-        var id = req.body.id;
+        var id = req.query.id;
         console.log("into app.delete");
         
         //convert id string to a MongoID object
         var idAsMongoObject = ObjectId.createFromHexString(id);
         
         //create search with MongoID
-        const search = {_id:idAsMongoObject};
+        const search = {_id: idAsMongoObject};
         
         try{
             const conn = await client.connect();
@@ -84,7 +87,58 @@ var services = function(app){
 
         }catch(err){
             return res.json({msg:"Error: "+ err});
+        }    
+    });
+
+//UPDATE RECORD - GOOD
+    app.put('/update-record', async function(req, res){
+        //bring in data from client
+        var id = req.body.id;
+        var newName = req.body.name;
+        var newSpecies = req.body.species;
+        var newBreed = req.body.breed;
+        var newAge = req.body.age;
+        var newColor = req.body.color;
+        var newTemp = req.body.temperament;
+        var newET = req.body.entryType;
+
+        //create JSON with data sent
+        var updateData = { $set: {
+            name: newName,
+            species: newSpecies,
+            breed: newBreed,
+            age: newAge,
+            color: newColor,
+            temperament: newTemp,
+            entryType: newET
+        }};
+
+        // convert id string to MongoID obj
+        var idAsMongoObject = ObjectId.createFromHexString(id);
+        
+        //create search with MongoID
+        const search = {_id:idAsMongoObject};
+        
+        try{
+            const conn = await client.connect();
+            const db = conn.db("animalshelter");
+            const coll = db.collection("animals");
+
+            await coll.updateOne(search, updateData);
+
+            await conn.close();
+            return res.json({msg: "SUCCESS"});
+
+        }catch(err){
+            return res.json({msg:"Error: "+ err});
         }
+    });
+
+//GET BY TYPE - NEEDS WORK
+  app.get('/get-animalsByType', async function (req,res) {
+        var speciesValueSelected = req.query.type;
+
+        var search = (speciesValueSelected === "") ? { } : {species: speciesValueSelected};
         
     });
 

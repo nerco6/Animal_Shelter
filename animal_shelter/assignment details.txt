@@ -135,3 +135,33 @@ Hint: remember that the data is returned in an array of objects.
 Extra Credit (10 points): Change your add record page from an HTML/JavaScript(/jQuery, if applicable) page to an AngularJS page.
 
  
+////FINAL project
+Make the following changes to your server:
+
+DONE - Modify the view-data page to be an AngularJS page. - 20 Points
+**Add the ability to sort the table by a "type" - 35 points
+ The type should be something that is used by many records
+For example:  In the library repository you could use author or publisher as the type.  Avoid using the name (of a game, book, restaurant, etc.) field
+DONE - Add a "get by type" listener to your server
+**Add the ability to update a record- 35 points
+This can be done on the repository table page (as we did in the Harry Potter example) or on a new page.
+-Use the PUT method
+Add a PUT listener to your server
+
+**Keep it pretty (CSS) - 10 Points
+Hint: We did numbers 1, 2, and 3 with Harry Potter.
+
+Extra Credit (10 points): 
+DONE - Change your add record page from an HTML/JavaScript(/jQuery, if applicable)  page to an AngularJS page. (if you did not do already for HW 10)
+Extra Extra Credit 
+
+**(40 points): 
+Add a sort by dropdown box to your repository table. 
+The options should be each of your fields (not the _id)
+When the option is selected, the page should use an $htttp call to retrieve the data sorted by the option selected.
+On return the table should then be updated so the data is sorted.
+Hint: don't forget to send the type that your table is currently displaying (ALL records, certain author, certain restaurant type, etc.) so only those records are displayed (but sorted). 
+Update your GitHub Repository.  Submit the link when complete
+
+
+Work on Redraw, Filter, and Sorting

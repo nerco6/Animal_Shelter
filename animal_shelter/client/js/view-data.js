@@ -1,4 +1,4 @@
-
+/*
 
 var dataset1 ={
     name:"Enzo",
@@ -99,7 +99,7 @@ function showTable(shelterData){ //show table
             htmlString += "<td>" + shelterData[i].temperament + "</td>";
             htmlString += "<td>" + shelterData[i].entryType + "</td>";
             //add inner delete button
-            htmlString += "<td><button class='delete-button' data-id='" + shelterData[i]._id + "'>Remove</button></td>"
+            htmlString += "<td><button class='delete-button' data-id='" + shelterData[i]._id + "'>Remove</button></td>" 
             
         htmlString += "</tr>";
     }
@@ -156,3 +156,167 @@ function handleDelete(deleteID){
     })
     //event.preventDefault();
 }
+
+*/
+
+//FINAL PROJECT/////////// MAKE ANGULAR
+
+//1. Define angular app
+var app = angular.module("viewRecordsApp", []);
+
+//2. create controller and populate with function needed
+app.controller('viewRecordsController', function($scope, $http){
+    $scope.animals = [];
+    $scope.types = [];
+
+    $scope.get_records = function() {
+        $http({
+            method : "GET",
+            url : shelterURL + "/get-records"
+        }).then(function(response) {
+            if(response.data.msg === "SUCCESS") {
+                $scope.animals = response.data.shelterData;
+                $scope.types = getTypes(response.data.shelterData);
+                $scope.selectedType = $scope.types[0];
+            } else {
+                console.log(response.data.msg);
+            }
+        }, function(response) {
+            alert(response);
+            console.log("Could not get records");
+        });
+    };
+
+    $scope.redrawTable = function() {
+        var type = $scope.selectedType.value;
+        console.log(type);
+        $http({
+            method : "GET",
+            url : shelterURL + "/get-animalsByType",
+            params: {species: type}
+        }).then(function(response) {
+            if(response.data.msg === "SUCCESS") {
+				console.log("Table redrawn");
+                $scope.animals = response.data.shelterData;
+            } else {
+                console.log(response.data.msg);
+            }
+        }, function(response) {
+            alert(response);
+            console.log("Could not redraw table");
+        });
+    }
+
+//DELETE RECORD - GOOD
+    $scope.deleteRecord = function(id) {
+        console.log(id);
+        $http({
+            method : "DELETE",
+            url : shelterURL + "/delete-record",
+            params: {id: id}
+        }).then(function(response) {
+            if(response.data.msg === "SUCCESS") {
+                $scope.redrawTable();
+            } else {
+                console.log("problem" + response.data.msg);
+            }
+        }, function(response) {
+            alert(response);
+            console.log("I failed the Delete");
+        });
+    }
+
+//EDIT RECORD - GOOD
+    $scope.editRecord = function(index) {
+        console.log(index);
+        $scope.name = $scope.animals[index].name;
+        $scope.species = $scope.animals[index].species;
+        $scope.breed = $scope.animals[index].breed;
+        $scope.age = $scope.animals[index].age;
+        $scope.color = $scope.animals[index].color;
+        $scope.temperament = $scope.animals[index].temperament;
+        $scope.entryType = $scope.animals[index].entryType;
+        $scope.id = $scope.animals[index]['_id'];
+
+        console.log("Animal ID set: " + $scope.id);
+        $scope.hideTable = true;
+        $scope.hideForm = false;
+    }
+//CANCEL UPDATE - GOOD
+	$scope.cancelUpdate = function() {
+		$scope.hideForm = true;
+		$scope.hideTable = false;
+
+	}
+//UPDATE RECORD - GOOD
+    $scope.updateRecord = function() {
+        if($scope.name === "" || $scope.species === "" || $scope.color === "") {
+            $scope.addResults = "Name, Species, and Color required";
+            return;
+        }
+
+        console.log("Animal ID check: " + $scope.id);
+
+        $http({
+            method : "PUT",
+             url : shelterURL + "/update-record",
+             data: {
+                "id": $scope.id,
+                "name": $scope.name,
+                "species": $scope.species,
+                "breed": $scope.breed,
+                "age": $scope.age,
+                "color": $scope.color,
+                "temperament": $scope.temperament,
+                "entryType": $scope.entryType
+            }
+        }).then(function(response) {
+            if(response.data.msg === "SUCCESS") {
+                $scope.hideForm = true;
+                $scope.hideTable = false;
+
+                $scope.redrawTable();
+                
+                $scope.name = "";
+                $scope.species = "";
+                $scope.breed = "";
+                $scope.age = "";
+                $scope.color = "";
+                $scope.temperament = "";
+                $scope.entryType = "";
+            } else {
+                $scope.addResults = response.data.msg;
+            }
+        }, function(response) {
+            alert(response);
+            console.log("I failed");
+        });
+
+    }
+
+    $scope.get_records();
+});
+
+//A handy function we will use to get the list of types
+function getTypes(shelterTableData) {
+    var typeExists;  //This is used to prevent duplicates
+
+    typesArray = [{value:"", display:"ALL"}];
+	
+	//Loop through the JSON array returned from the server
+    for(var i=0; i<shelterTableData.length; i++) {
+		//Check to see if the type in the ith record has already been captured
+        typeExists = typesArray.find(function(element) {
+            return element.value.toUpperCase() === shelterTableData[i].species.toUpperCase();
+        })    
+        if(typeExists) {
+            continue;  //If already captured, move on to next element
+        } else {
+			//If not captured, add the type and uppercase type to the types array
+            typesArray.push({value: shelterTableData[i].species, display: shelterTableData[i].species});
+        }
+    }
+
+    return typesArray
+}
+

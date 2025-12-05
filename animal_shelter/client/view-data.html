@@ -10,10 +10,11 @@
         <link rel="stylesheet" href="/client/css/view-data.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="/client/js/config.js"></script> 
         <script src="/client/js/view-data.js" async></script>
     </head>
-    <body>
+    <body data-ng-app="viewRecordsApp" data-ng-controller="viewRecordsController" data-ng-init="hideForm=true">
         <main>
             <section>
                 <div class="header" >
@@ -29,7 +30,16 @@
             </section>
             <section class="viewDataPage">
                 <div id="bgimg"></div>             
-                <div id="tablebox">
+                <div id="tablebox" data-ng-hide="hideTable">
+                    <div id="findByType">
+                        <label for="groupby">Find By Animal Type:</label>
+                        <select id="groupby"
+                                data-ng-model="selectedType"  
+                                data-ng-options="species.display for species in types" 
+                                data-ng-change="redrawTable()"
+                            >
+                        </select>
+                    </div>
                     <table class="table">
                         <colgroup>
                             <col class='col-xs-3'>
@@ -44,10 +54,74 @@
                                 <th>Temperament</th>
                                 <th>Entry Type</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody id='animalTable'></tbody>
+                        <tbody id='animalTable'>
+                            <tr data-ng-repeat="obj in animals">
+                                <td>{{ obj.name }}</td>
+                                <td>{{ obj.species }}</td>
+                                <td>{{ obj.breed }}</td>
+                                <td>{{ obj.age }}</td>
+                                <td>{{ obj.color }}</td>
+                                <td>{{ obj.temperament }}</td>
+                                <td>{{ obj.entryType }}</td>
+                                <td>
+                                    <button data-ng-click="deleteRecord(obj['_id'])">DELETE</button>
+                                </td>
+                                <td>
+                                    <button data-ng-click="editRecord($index)">EDIT</button>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
+                </div>
+            </section>
+
+            <section id="updateForm" data-ng-hide="hideForm">
+                <div id="updateHeader">Update Animal Data</div>
+                <div>
+                    <label data-ng-model="id" hidden></label>
+                </div>
+                <div>
+                    <label for="name">Name: </label>
+                    <input type="text" id="name" data-ng-model="name" data-ng-change=startNew()>
+                </div>
+                <div>
+                    <label for="species">Species: </label>
+                    <input type="text" id="species" data-ng-model="species" data-ng-change=startNew()>
+                </div>
+                <div>
+                    <label for="breed">Breed: </label>
+                    <input type="text" id="breed" data-ng-model="breed" data-ng-change=startNew()>
+                </div>
+                <div>
+                    <label for="age">Age: </label>
+                    <input type="text" id="age" data-ng-model="age" data-ng-change=startNew()>
+                </div>
+                <div>
+                    <label for="color">Color: </label>
+                    <input type="text" id="color" data-ng-model="color" data-ng-change=startNew()>
+                </div>
+                <div>
+                    <label for="temperament">Temperament: </label>
+                    <input type="text" id="temperament" data-ng-model="temperament" data-ng-change=startNew()>
+                </div>
+                <div>
+                    <label for="entryType">Entry Type: </label>
+                    <input type="text" id="entryType" data-ng-model="entryType" data-ng-change=startNew()>
+                </div>
+
+                <div id="updateFormBtn">
+                    <div>
+                        <button id="submit" data-ng-click="updateRecord()">Update</button>
+                    </div>
+                </div>
+
+                <div id="updateFormBtn"> 
+                    <div>
+                        <button id="cancelButton" data-ng-click="cancelUpdate()">Cancel</button>
+                    </div>
                 </div>
             </section>
         </main>

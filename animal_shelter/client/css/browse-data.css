@@ -36,16 +36,18 @@
     color: rgb(100, 100, 183);
 }
 
-.btnContainer{
-    float: left; 
+
+
+#browseButtons {
+    margin-left: 27%;
     margin-top: 30px;
-    margin-bottom: 20px;
-
+    margin-bottom: 10px;
 }
-
-.btnStyle{
-    float: left;
-    padding-right: 80px;
+#browseButtons > .btn {
+    float: left; 
+    clear: right; 
+    margin-left: 30px;
+    margin-bottom: 10px;
 }
 
 #previous{

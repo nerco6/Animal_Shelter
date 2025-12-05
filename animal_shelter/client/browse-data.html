@@ -61,12 +61,15 @@
             
 
                 <div class="btnContainer" >
-                    <div class="btnStyle">
-                        <button id="previous" ng-click="changeRecord(-1)" ng-hide="hidePrev">&lt&lt&lt Previous</button>
+                    <div id="browseButtons">
+                        <div class="btnStyle">
+                            <button id="previous" ng-click="changeRecord(-1)" ng-hide="hidePrev">&lt&lt&lt Previous</button>
+                        </div>
                     </div>
-
-                    <div class="btnStyle" >
-                        <button id="next" ng-click="changeRecord(1)" ng-hide="hideNext">Next &gt&gt&gt</button>
+                    <div id="browseButtons"></div>
+                        <div class="btnStyle" >
+                            <button id="next" ng-click="changeRecord(1)" ng-hide="hideNext">Next &gt&gt&gt</button>
+                        </div>
                     </div>
                 </div>
             </div>  
