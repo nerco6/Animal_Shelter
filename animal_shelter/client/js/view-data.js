@@ -178,6 +178,7 @@ app.controller('viewRecordsController', function($scope, $http){
                 $scope.animals = response.data.shelterData;
                 $scope.types = getTypes(response.data.shelterData);
                 $scope.selectedType = $scope.types[0];
+                $scope.selectedSort = "name";
             } else {
                 console.log(response.data.msg);
             }
@@ -189,14 +190,14 @@ app.controller('viewRecordsController', function($scope, $http){
 
     $scope.redrawTable = function() {
         var type = $scope.selectedType.value;
-        console.log(type);
+        var sort = $scope.selectedSort;
+        console.log("redraw");
         $http({
             method : "GET",
-            url : shelterURL + "/get-animalsByType",
-            params: {species: type}
+            url : shelterURL + "/get-animalsByTypeAndSort",
+            params: {type: type, sort:sort}
         }).then(function(response) {
             if(response.data.msg === "SUCCESS") {
-				console.log("Table redrawn");
                 $scope.animals = response.data.shelterData;
             } else {
                 console.log(response.data.msg);

@@ -134,12 +134,29 @@ var services = function(app){
         }
     });
 
-//GET BY TYPE - NEEDS WORK
-  app.get('/get-animalsByType', async function (req,res) {
+//GET BY TYPE - GOOD
+  app.get('/get-animalsByTypeAndSort', async function (req,res) {
         var speciesValueSelected = req.query.type;
+        var sortSelection = req.query.sort; // || "name";
 
         var search = (speciesValueSelected === "") ? { } : {species: speciesValueSelected};
         
+        var orderBy = {};
+        orderBy[sortSelection] = 1;
+
+         try{
+            const conn = await client.connect();
+            const db = conn.db("animalshelter");
+            const coll = db.collection("animals");
+
+            const animals = await coll.find(search).sort(orderBy).toArray();
+
+            await conn.close();
+            return res.json({msg: "SUCCESS", shelterData:animals});
+
+        }catch(err){
+            return res.json({msg:"Error: "+ err});
+        }
     });
 
 }

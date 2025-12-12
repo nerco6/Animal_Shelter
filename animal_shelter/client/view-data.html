@@ -31,14 +31,30 @@
             <section class="viewDataPage">
                 <div id="bgimg"></div>             
                 <div id="tablebox" data-ng-hide="hideTable">
-                    <div id="findByType">
-                        <label for="groupby">Find By Animal Type:</label>
-                        <select id="groupby"
-                                data-ng-model="selectedType"  
-                                data-ng-options="species.display for species in types" 
-                                data-ng-change="redrawTable()"
-                            >
-                        </select>
+                    <div id="selectors">
+                        <div id="findByType">
+                            <label for="groupby">Find By Animal Type:</label>
+                            <select id="groupby"
+                                    data-ng-model="selectedType"  
+                                    data-ng-options="species.display for species in types" 
+                                    data-ng-change="redrawTable()"
+                                >
+                            </select>
+                        </div>
+                        <div id="sortPicker">
+                            <label for="sortby">Sort by:</label>
+                            <select id="sortby"
+                                    data-ng-model="selectedSort"
+                                    data-ng-change="redrawTable()">
+                                <option value="name">NAME</option>
+                                <option value="species">SPECIES</option>
+                                <option value="breed">BREED</option>
+                                <option value="age">AGE</option>
+                                <option value="color">COLOR</option>
+                                <option value="temperament">TEMPERAMENT</option>
+                                <option value="entryType">ENTRY TYPE</option>
+                            </select>
+                        </div>
                     </div>
                     <table class="table">
                         <colgroup>

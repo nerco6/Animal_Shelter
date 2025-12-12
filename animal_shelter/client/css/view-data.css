@@ -12,11 +12,13 @@
 
 }
 
-#findByType > label {
-    margin-left: 40px;
+#selectors {
+    margin-left: 10px;
     font-size: 20px;
     padding: 10,10;
+
 }
+
 
 #tablebox {
     display:flexbox;
